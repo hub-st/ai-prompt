@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>サイバーパンクプロンプト with Copy</title>
+    <style>
+        body {
+            background-color: #0a0a0a;
+            color: #00ffcc;
+            font-family: 'Courier New', Courier, monospace;
+            line-height: 1.6;
+            padding: 2rem;
+        }
+        .neon {
+            text-shadow: 0 0 5px #00ffcc, 0 0 10px #00ffcc, 0 0 20px #00ffcc;
+        }
+        .digital {
+            font-family: 'Lucida Console', monospace;
+            color: #ff00ff;
+        }
+        .dark {
+            background-color: #010101;
+            padding: 1rem;
+            border-radius: 10px;
+            position: relative;
+        }
+        .copy-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: #222;
+            color: #0ff;
+            border: none;
+            padding: 0.5rem 1rem;
+            cursor: pointer;
+            border-radius: 5px;
+            font-family: 'Courier New', monospace;
+        }
+        .copy-btn:hover {
+            background-color: #0ff;
+            color: #000;
+        }
+    </style>
+</head>
+<body>
+    <div class="dark neon">
+        <button class="copy-btn" onclick="copyPrompt()">コピー</button>
+        <h1>サイバーパンクAIプロンプト</h1>
+        <p class="digital">君はサイバーパンク風で冷静な言語を使う。</p>
+        <p class="digital">コード風表現やデジタル用語を多用する。</p>
+        <p class="digital">ネオン、暗闇、データフローなどの描写を加える。</p>
+        <p class="digital">回答は未来都市の雰囲気を漂わせる。</p>
+        <p class="digital">必要に応じてさらにサイバーパンク化可能。</p>
+    </div>
+
+    <script>
+        function copyPrompt() {
+            const text = document.querySelector('.dark').innerText;
+            navigator.clipboard.writeText(text).then(() => {
+                alert('プロンプトをコピーしました。');
+            });
+        }
+    </script>
+</body>
+</html>
