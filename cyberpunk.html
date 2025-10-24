@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cyberpunk ChatBot</title>
+<style>
+  body {
+    margin: 0;
+    font-family: 'Courier New', monospace;
+    background: #0a0a0a;
+    color: #0ff;
+    overflow: hidden;
+  }
+  .chat-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 400px;
+    height: 600px;
+    transform: translate(-50%, -50%);
+    border: 2px solid #ff00ff;
+    border-radius: 10px;
+    background: rgba(0,0,0,0.85);
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 0 20px #0ff, 0 0 40px #ff00ff;
+  }
+  .messages {
+    flex: 1;
+    padding: 10px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .message {
+    max-width: 70%;
+    padding: 8px 12px;
+    border-radius: 8px;
+    word-break: break-word;
+    animation: glitch 0.3s infinite;
+  }
+  .user { 
+    align-self: flex-end;
+    background: #00ffff44;
+    color: #0ff;
+  }
+  .bot {
+    align-self: flex-start;
+    background: #ff00ff44;
+    color: #f0f;
+  }
+  @keyframes glitch {
+    0% { text-shadow: 2px 0 #ff00ff, -2px 0 #0ff; }
+    20% { text-shadow: -2px 0 #ff00ff, 2px 0 #0ff; }
+    40% { text-shadow: 2px 0 #0ff, -2px 0 #ff00ff; }
+    60% { text-shadow: -2px 0 #0ff, 2px 0 #ff00ff; }
+    80% { text-shadow: 2px 0 #ff00ff, -2px 0 #0ff; }
+    100% { text-shadow: -2px 0 #ff00ff, 2px 0 #0ff; }
+  }
+  .input-container {
+    display: flex;
+    border-top: 1px solid #ff00ff;
+  }
+  input {
+    flex: 1;
+    padding: 10px;
+    border: none;
+    background: #111;
+    color: #0ff;
+    outline: none;
+    font-family: 'Courier New', monospace;
+  }
+  button {
+    background: #ff00ff;
+    color: #0ff;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    font-family: 'Courier New', monospace;
+  }
+  button:hover {
+    background: #ff66ff;
+  }
+</style>
+</head>
+<body>
+
+<div class="chat-container">
+  <div class="messages" id="messages"></div>
+  <div class="input-container">
+    <input type="text" id="input" placeholder="> TYPE YOUR CODE..." />
+    <button onclick="sendMessage()">SEND</button>
+  </div>
+</div>
+
+<script>
+const messages = document.getElementById('messages');
+const input = document.getElementById('input');
+
+const botReplies = [
+  "アクセス拒否…認証失敗。",
+  "データフロー異常検出。",
+  "コマンド解析中…",
+  "404: 感情未検出。",
+  "ノイズ混入…再送信要求。",
+  "システム監視モードON。",
+  "ログを追跡中…"
+];
+
+function appendMessage(text, sender) {
+  const div = document.createElement('div');
+  div.classList.add('message', sender);
+  div.textContent = text;
+  messages.appendChild(div);
+  messages.scrollTop = messages.scrollHeight;
+}
+
+function sendMessage() {
+  const userText = input.value.trim();
+  if(!userText) return;
+  appendMessage(userText, 'user');
+  input.value = '';
+
+  setTimeout(() => {
+    const reply = botReplies[Math.floor(Math.random() * botReplies.length)];
+    appendMessage(reply, 'bot');
+  }, 500 + Math.random() * 1000);
+}
+
+input.addEventListener('keydown', (e) => {
+  if(e.key === 'Enter') sendMessage();
+});
+</script>
+
+</body>
+</html>
