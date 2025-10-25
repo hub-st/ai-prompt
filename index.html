@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>サイバーパンク・ネオン雨 - SEOクロール用</title>
+<meta name="description" content="サイバーパンク風ネオン雨のデモページ。Googleクロール向けに最適化済み。">
+<meta name="robots" content="index, follow">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "サイバーパンク・ネオン雨",
+  "description": "サイバーパンク風ネオン雨のデモページ。Googleクロール向けに最適化済み。",
+  "publisher": {
+    "@type": "Organization",
+    "name": "Cybernet"
+  }
+}
+</script>
+<style>
+  body {
+    margin: 0;
+    padding: 0;
+    background: #0a0a0a;
+    overflow: hidden;
+    font-family: 'Arial', sans-serif;
+    color: #0ff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    flex-direction: column;
+  }
+
+  h1 {
+    position: relative;
+    font-size: 3em;
+    text-transform: uppercase;
+    color: #0ff;
+    text-shadow: 0 0 5px #0ff, 0 0 10px #0ff, 0 0 20px #0ff, 0 0 40px #f0f, 0 0 80px #f0f;
+    z-index: 2;
+    pointer-events: none;
+  }
+
+  p {
+    color: #0ff;
+    text-align: center;
+    max-width: 600px;
+    z-index: 2;
+  }
+
+  .rain {
+    position: absolute;
+    width: 2px;
+    height: 15px;
+    background: linear-gradient(to bottom, #f0f, transparent);
+    top: -20px;
+    animation: fall linear infinite;
+  }
+
+  @keyframes fall {
+    0% { transform: translateY(-20px); opacity: 1; }
+    100% { transform: translateY(100vh); opacity: 0; }
+  }
+</style>
+</head>
+<body>
+
+<h1>NEON RAIN</h1>
+<p>このページはサイバーパンク風ネオン雨のデモです。Googlebot向けにクロールとインデックスを最適化しています。</p>
+
+<script>
+  // Googlebot向けに軽量化
+  const numDrops = 50; // 元150→50に減らして負荷を軽く
+  for(let i=0; i<numDrops; i++){
+    let drop = document.createElement('div');
+    drop.classList.add('rain');
+    drop.style.left = Math.random() * window.innerWidth + 'px';
+    drop.style.animationDuration = (0.5 + Math.random()*1.5) + 's';
+    drop.style.height = (10 + Math.random()*20) + 'px';
+    drop.style.background = `linear-gradient(to bottom, hsl(${Math.random()*360}, 100%, 70%), transparent)`;
+    document.body.appendChild(drop);
+  }
+</script>
+
+</body>
+</html>
